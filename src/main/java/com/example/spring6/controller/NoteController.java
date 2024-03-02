@@ -78,7 +78,7 @@ public class NoteController {
      * @param id идентификатор заметки для удаления
      * @return http запрос об успешном удалении заметки
      */
-    @DeleteMapping({"id"})
+    @DeleteMapping({"{id}"})
     public ResponseEntity<Void> deleteNote(@PathVariable("id") Long id) {
         noteRepo.deleteById(id);
         return ResponseEntity.ok().build();

@@ -27,13 +27,13 @@ public class Note {
     /**
      * Заголовок заметки
      */
-    @NonNull
+
     private String title;
 
     /**
      * Содержимое заметки
      */
-    @NonNull
+
     private String content;
 
     /**
