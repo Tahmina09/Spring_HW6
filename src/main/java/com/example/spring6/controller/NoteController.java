@@ -62,7 +62,7 @@ public class NoteController {
      * @return отредактированная заметка
      */
     @PutMapping("{id}")
-    public ResponseEntity<Note> updateNote(@PathVariable("id") Long id, Note note) {
+    public ResponseEntity<Note> updateNote(@PathVariable("id") Long id, @RequestBody Note note) {
         Optional<Note> noteId = noteRepo.findById(id);
         if (noteId.isPresent()) {
             Note noteUpdate = noteId.get();
