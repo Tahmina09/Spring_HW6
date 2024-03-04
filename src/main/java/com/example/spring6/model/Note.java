@@ -1,9 +1,6 @@
 package com.example.spring6.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -27,13 +24,13 @@ public class Note {
     /**
      * Заголовок заметки
      */
-
+    @Column(nullable = false, length = 200)
     private String title;
 
     /**
      * Содержимое заметки
      */
-
+    @Column(nullable = false)
     private String content;
 
     /**
