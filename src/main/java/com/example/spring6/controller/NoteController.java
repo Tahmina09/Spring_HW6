@@ -5,7 +5,6 @@ import com.example.spring6.repository.NoteRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -49,10 +48,9 @@ public class NoteController {
     @GetMapping("{id}")
     public ResponseEntity<Note> getById(@PathVariable("id") Long id) {
         Optional<Note> findNote = noteRepo.findById(id);
-        if (!findNote.isPresent()){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Note());
-        }
-        return new ResponseEntity<>(findNote.get(), HttpStatus.OK);
+        return findNote.map(note -> new ResponseEntity<>(note, HttpStatus.OK))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(new Note()));
     }
 
     /**
